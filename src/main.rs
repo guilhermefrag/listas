@@ -35,9 +35,29 @@ fn insere_lista(lista: &mut Lista, valor: i32) {
     }
 }
 
+fn imprime_lista(lista: &mut Lista) {
+    if lista_vazia(lista) {
+        println!("Lista vazia");
+    } else {
+        for i in 0..lista.ultimo {
+            println!("{}", lista.values[i]);
+        }
+    }
+}
+
 
 
 fn main() {
     
+    let mut list: Lista = criar_lista();
+    let list_ref = &mut list;
+    insere_lista(list_ref, 1);
+    insere_lista(list_ref, 2);
+    insere_lista(list_ref, 3);
+    insere_lista(list_ref, 4);
+    imprime_lista(list_ref);
+
+
+
     
 }
