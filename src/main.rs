@@ -45,6 +45,58 @@ fn imprime_lista(lista: &mut Lista) {
     }
 }
 
+fn insere_inicio(lista: &mut Lista, valor: i32) {
+    if lista_cheia(lista) {
+        println!("Lista cheia");
+    } else {
+        for i in (0..lista.ultimo).rev() {
+            lista.values[i+1] = lista.values[i];
+        }
+        lista.values[0] = valor;
+        lista.ultimo += 1;
+    }
+}
+
+fn insere_final(lista: &mut Lista, valor: i32) {
+    if lista_cheia(lista) {
+        println!("Lista cheia");
+    } else {
+        lista.values[lista.ultimo] = valor;
+        lista.ultimo += 1;
+    }
+}
+
+fn ordena_asc(lista: &mut Lista) {
+    if lista_vazia(lista) {
+        println!("Lista vazia");
+    } else {
+        for i in 0..lista.ultimo {
+            for j in 0..lista.ultimo {
+                if lista.values[i] < lista.values[j] {
+                    let aux = lista.values[i];
+                    lista.values[i] = lista.values[j];
+                    lista.values[j] = aux;
+                }
+            }
+        }
+    }
+}
+
+fn ordena_desc(lista: &mut Lista) {
+    if lista_vazia(lista) {
+        println!("Lista vazia");
+    } else {
+        for i in 0..lista.ultimo {
+            for j in 0..lista.ultimo {
+                if lista.values[i] > lista.values[j] {
+                    let aux = lista.values[i];
+                    lista.values[i] = lista.values[j];
+                    lista.values[j] = aux;
+                }
+            }
+        }
+    }
+}
 
 
 fn main() {
@@ -53,11 +105,10 @@ fn main() {
     let list_ref = &mut list;
     insere_lista(list_ref, 1);
     insere_lista(list_ref, 2);
-    insere_lista(list_ref, 3);
-    insere_lista(list_ref, 4);
+    insere_inicio(list_ref, 3);
+    insere_final(list_ref, 4);
+    ordena_asc(list_ref);
+    ordena_desc(list_ref);
     imprime_lista(list_ref);
-
-
-
     
 }
